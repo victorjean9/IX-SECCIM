@@ -1,0 +1,144 @@
+#background_fading {
+    background-image : url(../img/auditorio.jpg);
+    background-position: center;
+    background-color : black;
+    z-index: -1;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height : 100%;
+    width : 100%;
+    position : fixed;
+}
+#filtro_background{
+    z-index: -1;
+    background-color : rgb(0,0,0,0.6);
+}
+#titulo_imagem{
+     width : 100%;
+     margin : 0px;
+     padding : 120px 50px;
+     color: white;
+     text-align : center;
+     line-height: 84px;
+     font-size: 80px;
+     position: fixed;
+}
+
+#titulo_spacing {
+    height: 324px;
+}
+
+#div_texto{
+    margin-bottom: -19px;
+    background-color : white;
+    position: relative;
+}
+.nome_palestrante{
+    padding : 15px;
+}
+.titulo_palestrante{
+     width : 100%;
+     font-size : 20px;
+     border-bottom :
+     1px solid #C0C0C0;
+     padding : 10px;
+     margin-bottom : 0
+}
+.linha_palestrante1{
+    border-bottom : 1px solid gray;
+    width : 20%;
+    margin-bottom : 0.5;
+}
+.linha_palestrante2{
+    border-bottom : 1px solid black;
+    width : 5%;
+}
+.linha2_palestrante{
+    font-size: 1em;
+    color: rgba(0,0,0,.4)
+}
+
+
+
+.card_palestrante{
+    padding: 0px 15px 15px 15px;
+    width : 100%;
+    box-shadow : 0px 0px !important;
+}
+.coluna_img{
+    display: inline-block !important;
+    margin:0px !important;
+    width : 180 !important;
+}
+.coluna_content {
+    display: inline-block;
+    vertical-align:top;
+    text-align: justify;
+}
+
+.social_button{
+    width:100% !important;
+    margin-bottom:10px !important;
+    height: 40px;
+}
+
+@media only screen
+and (max-width:750px) {
+    .coluna_content{
+        margin-top: 10px;
+        width: 100% !important;
+    }
+}
+
+@media only screen
+and (min-width:751px) {
+    .coluna_content{
+        width: calc(100% - 185px) !important;
+        padding: 0px 20px;
+    }
+}
+
+/* -------------------- */
+
+@media only screen
+and (max-width:400px) {
+    #titulo_imagem{
+        font-size: 35px;
+        line-height: 45px;
+    }
+}
+
+@media only screen
+and (min-width:401px)
+and (max-width:600px) {
+    #titulo_imagem{
+        font-size: 45px;
+        line-height: 55px;
+    }
+}
+
+@media only screen
+and (min-width:601px)
+and (max-width:800px) {
+    #titulo_imagem{
+        font-size: 55px;
+        line-height: 65px;
+    }
+}
+
+@media only screen
+and (min-width:801px)
+and (max-width:1000px) {
+    #titulo_imagem{
+         font-size: 65px;
+         line-height: 75px;
+    }
+}
+
+@media only screen
+and (min-width:1001px) {
+    #titulo_imagem{
+         font-size: 75px;
+         line-height: 85px;
+    }
+}

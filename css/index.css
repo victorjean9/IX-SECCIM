@@ -1,0 +1,431 @@
+body {
+    background-color:#000;
+}
+.pusher {
+    background-color:#000;
+}
+
+#div_slider {
+    height: 100%;
+    z-index: 0;
+    position:fixed;
+}
+
+.sub_menu{
+    border-bottom : 2px solid #C0C0C0;
+    padding : 10px;
+    cursor : pointer;
+}
+.sub_menu:hover {
+    border-bottom : 2px solid gray;
+}
+.sub_menu.active{
+    border-bottom : 2px solid black;
+    font-weight : bold;
+}
+.to_left {
+    float : left !important;
+}
+
+.to_right {
+    float : right !important;
+}
+
+.slider_page {
+    width : 100%;
+    height : 100%;
+    background-size : cover;
+    background-position : top;
+}
+
+.placeholder_bloco {
+    width : 100%;
+    height : 200px;
+}
+
+.foto_bloco {
+    width : 100%;
+    height : 200px;
+    background-size : cover;
+    background-position : center;
+}
+.titulo_bloco {
+    padding-top : 15px !important;
+}
+
+#botoes_publicacoes {
+    text-align : center;
+    background-color: white;
+    padding:15px;
+    border-radius: 15px;
+}
+
+.coluna_a{
+    background-color: white !important;
+    padding: 15px 15px 45px 15px !important;
+    border-radius: 15px;
+}
+
+.bloco_patrocinador {
+    width:135px;
+    display:inline-block;
+    margin:0px 10px;
+    z-index:1000;
+    opacity:1;
+    margin-top: 10px;
+}
+
+.coluna_a_patrocinador{
+    background-color: white !important;
+    padding: 15px 15px 15px 15px !important;
+    border-radius: 15px;
+}
+
+.foto_patrocinador {
+    width:100%;
+    height:50px;
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position:center;
+}
+
+#background_fading {
+    height: calc(100% - 60px);
+    width: 100%;
+}
+
+@-moz-document url-prefix() {
+    #background_fading {
+        height: calc(100vh - 60px);
+    }
+}
+
+#div_footer {
+    margin-top:15px;
+    background-color: transparent !important;
+}
+
+#botoes_publicacoes_div {
+    margin: -14px 0px !important;
+    position:absolute;
+    width: 100%;
+    bottom:40px;
+    opacity:0;
+    display:none;
+}
+
+.tipo_bloco {
+    background: rgb(0,0,0,0.8);
+    color: white;
+    text-align:center;
+    width:100%;
+    font-weight: bold;
+    padding:10px;
+    margin-top:-39px;
+}
+
+
+.slider__caption__title {
+    position: absolute;
+    top: 160px;
+    left: 60px;
+    display: block;
+    padding: 80px;
+    color: #fff;
+    background: rgba(0, 0, 0, .7);
+    font-size: 100px;
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#99000000', endColorstr='#99000000'); /* ie8 */
+}
+.slider__caption__subtitle {
+    position: absolute;
+    top: 340px;
+    left: 60px;
+    margin-right: 60px;
+    display: block;
+    padding: 20px;
+    color: #fff;
+    background: rgba(0, 0, 0, .7);
+    font-size: 30px;
+    line-height: normal;
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#99000000', endColorstr='#99000000'); /* ie8 */
+}
+.slider__caption__tag {
+    position: absolute;
+    top: 426.5px;
+    left: 60px;
+    display: block;
+    padding: 20px;
+    color: #fff;
+    background: rgba(0, 0, 0, .7);
+    font-size: 30px;
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#99000000', endColorstr='#99000000'); /* ie8 */
+}
+
+.inscreva_button{
+    cursor: pointer;
+}
+
+.pyladies_button{
+    cursor: pointer;
+}
+
+@media only screen
+and (max-width:400px) {
+    .slider__caption__title {
+        font-size: 30px;
+        padding: 40px;
+        left: 30px;
+    }
+    .slider__caption__subtitle {
+        font-size: 15px;
+        left: 30px;
+        margin-right: 30px;
+        top: 260px;
+    }
+
+    .slider__caption__tag {
+        font-size: 15px;
+        top: 345px;
+        left: 30px;
+    }
+
+    #botoes_publicacoes_div{
+        padding-right : 15;
+        padding-left : 15;
+    }
+
+    @-moz-document url-prefix() {
+        .slider__caption__subtitle {
+            top: 261px;
+        }
+
+        .slider__caption__tag {
+            top: 347px;
+        }
+    }
+}
+
+@media only screen
+and (min-width:401px)
+and (max-width:600px) {
+    .slider__caption__title {
+        font-size: 50px;
+        padding: 40px;
+    }
+    .slider__caption__subtitle {
+        font-size: 15px;
+        top: 260px;
+    }
+
+    .slider__caption__tag {
+        font-size: 15px;
+        top: 347px;
+    }
+    @-moz-document url-prefix() {
+        .slider__caption__subtitle {
+            font-size: 15px;
+            top: 261px;
+        }
+
+        .slider__caption__tag {
+            top: 349px;
+        }
+    }
+}
+
+@media only screen
+and (min-width:401px)
+and (max-width:497px) {
+    .slider__caption__title {
+        font-size: 30px;
+    }
+}
+
+@-moz-document url-prefix() {
+    @media only screen
+    and (min-width:401px)
+    and (max-width:625px) {
+        .slider__caption__title {
+            font-size: 30px !important;
+        }
+    }
+}
+
+@media only screen
+and (min-width:561px)
+and (max-width:600px) {
+
+    .slider__caption__tag {
+        font-size: 15px;
+        top: 324px;
+    }
+    @-moz-document url-prefix() {
+        .slider__caption__tag {
+            top: 326px;
+        }
+    }
+}
+
+@media only screen
+and (min-width:601px)
+and (max-width:800px) {
+    .slider__caption__title {
+        font-size: 65px;
+        padding: 50px;
+    }
+    .slider__caption__subtitle {
+        font-size: 15px;
+        top: 280px;
+    }
+
+    .slider__caption__tag {
+        font-size: 15px;
+        top: 344px;
+    }
+    @-moz-document url-prefix() {
+        .slider__caption__subtitle {
+            top: 281px;
+        }
+
+        .slider__caption__tag {
+            top: 346px;
+        }
+    }
+}
+
+@media only screen
+and (min-width:601px)
+and (max-width:620px) {
+    .slider__caption__title {
+        font-size: 55px;
+    }
+}
+
+@media only screen
+and (min-width:801px)
+and (max-width:1000px) {
+    .slider__caption__title {
+        font-size: 75px;
+        padding: 60px;
+    }
+    .slider__caption__subtitle {
+        font-size: 20px;
+        top: 300px;
+    }
+
+    .slider__caption__tag {
+        font-size: 20px;
+        top: 371px;
+    }
+    @-moz-document url-prefix() {
+        .slider__caption__subtitle {
+            top: 301px;
+        }
+
+        .slider__caption__tag {
+            top: 372px;
+        }
+    }
+}
+
+@media only screen
+and (min-width:1001px)
+and (max-width:1200px) {
+    .slider__caption__title {
+        font-size: 85px;
+        padding: 70px;
+    }
+    .slider__caption__subtitle {
+        font-size: 25px;
+        top: 320px;
+    }
+
+    .slider__caption__tag {
+        font-size: 25px;
+        top: 399px;
+    }
+    @-moz-document url-prefix() {
+        .slider__caption__subtitle {
+            font-size: 25px;
+            top: 321px;
+        }
+
+        .slider__caption__tag {
+            top: 401px;
+        }
+    }
+}
+
+@media only screen
+and (min-width:1201px) {
+    .slider__caption__title {
+        font-size: 95px;
+        padding: 80px;
+    }
+    .slider__caption__subtitle {
+        font-size: 30px;
+        top: 340px;
+    }
+
+    .slider__caption__tag {
+        font-size: 30px;
+        top: 426.5px;
+    }
+    @-moz-document url-prefix() {
+        .slider__caption__subtitle {
+            top: 341px;
+        }
+        .slider__caption__tag {
+            top: 427.5px;
+        }
+    }
+}
+
+@media only screen
+and (min-width:401px)
+and (max-width:767px) {
+    #botoes_publicacoes_div{
+        padding-right : 50;
+        padding-left : 50;
+    }
+}
+
+@media only screen
+and (max-height:540px) {
+    .slider__caption__title {
+        top: 90px;
+
+        font-size: 30px;
+        padding: 40px;
+        left: 30px;
+    }
+    .slider__caption__subtitle {
+        top: 190px;
+
+        font-size: 15px;
+        left: 30px;
+        margin-right: 30px;
+
+    }
+
+    .slider__caption__tag {
+        font-size: 15px;
+        left: 30px;
+    }
+}
+
+@media only screen
+and (max-width:500px)
+and (max-height:540px) {
+    .slider__caption__tag {
+        top: 275px;
+    }
+}
+
+@media only screen
+and (min-width:501px)
+and (max-height:540px) {
+    .slider__caption__tag {
+        top: 253px;
+    }
+}

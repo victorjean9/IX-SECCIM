@@ -1,0 +1,138 @@
+#menu_principal{
+    width : 100%;
+    position : fixed;
+    z-index : 999;
+    padding: 0px 30px 0px 40px;
+    background-image: url(../img/gray.png);
+    background-size: 100% 100%;
+}
+
+#menu_principal img {
+    height:100px;
+}
+
+.menu_principal_desceu {
+    background-color : #2b2b2b;
+    background-image : none !important;
+    box-shadow : 1px 1px 5px purple;
+}
+
+.nome_menu{
+    z-index: 999;
+    font-family : tahoma;
+    float : left;
+    margin : 0px
+}
+.nome_menu_grande{
+    padding : 20px 20px 20px 20px;
+}
+.nome_menu_pequeno{
+    padding : 10px 10px 10px 10px;
+}
+.btn_menu{
+    z-index: 999;
+    font-family : tahoma;
+    float : right;
+    color : white;
+    font-weight : bold;
+    cursor : pointer;
+}
+.btn_menu_grande{
+    padding : 28px 28px 28px 28px;
+}
+.btn_menu_pequeno{
+    padding : 18px 18px 18px 18px;
+}
+.btn_menu:hover {
+    background-color : purple;
+    color : white;
+}
+.fonte_titulo{
+    font-family: Poppins !important;
+}
+.fonte_texto{
+      font-family: Lato !important;
+}
+
+#div_footer{
+    width : 100%;
+    text-align : center;
+    color : white;
+    background-color: #2b2b2b;
+}
+#div_footer p{
+    padding : 10px;
+}
+#remove_espaço_menu2{ // APAGAR
+    width: 100%;
+    height : 76px;
+}
+#menu_hamburguer {
+    font-size: 20px;
+    display : none;
+}
+
+.coluna_inscricao_vazia {
+    width : 25% !important;
+    height : 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.coluna_inscricao_btn {
+    width : 50% !important;
+}
+
+.coluna_inscricao_btn a{
+    width: 100% !important;
+    background-color: purple !important;
+    color : white !important;
+}
+
+.youtube_iframe {
+    width:100%;
+    height:250px;
+}
+.icon_colab{
+     position: absolute !important;
+     width: 30px !important;
+     margin-left: 5px !important;
+     z-index: 500 !important;
+}
+
+@media only screen
+and (max-width:1260px) {
+    #menu_principal{
+        padding-right : 0;
+        padding-left : 0;
+    }
+    #menu_hamburguer {
+        display : inline;
+    }
+    .btn_pc {
+        display : none;
+    }
+}
+
+@-moz-document url-prefix() {
+    @media only screen
+    and (max-width:1293px) {
+        #menu_principal{
+            padding-right : 0;
+            padding-left : 0;
+        }
+        #menu_hamburguer {
+            display : inline;
+        }
+        .btn_pc {
+            display : none;
+        }
+    }
+}
+
+@media only screen
+and (max-width:767px) {
+    .coluna_inscricao_vazia {
+        display: none !important;
+    }
+}

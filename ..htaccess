@@ -1,0 +1,17 @@
+# Do not remove this line or mod_rewrite rules and search engine friendly URLs will stop working
+RewriteBase /
+
+ErrorDocument 400 /erro.php
+ErrorDocument 401 /erro.php
+ErrorDocument 403 /erro.php
+ErrorDocument 404 /erro.php
+ErrorDocument 500 /erro.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteRule ^palestrantes/?$ /palestrantes.php [NC,L]
+    RewriteRule ^organizadores/?$ /organizadores.php [NC,L]
+
+    RewriteRule ^([a-zA-Z0-9-]+)/?$ /seccim/palestra-minicurso.php?url=$1 [NC,L]
+</IfModule>
