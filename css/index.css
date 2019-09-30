@@ -104,6 +104,10 @@ body {
     margin-top:15px;
     background-color: transparent !important;
 }
+#div_redes_sociais {
+    margin-top:15px;
+    background-color: transparent !important;
+}
 
 #botoes_publicacoes_div {
     margin: -14px 0px !important;
@@ -113,7 +117,6 @@ body {
     opacity:0;
     display:none;
 }
-
 .tipo_bloco {
     background: rgb(0,0,0,0.8);
     color: white;
@@ -123,8 +126,6 @@ body {
     padding:10px;
     margin-top:-39px;
 }
-
-
 .slider__caption__title {
     position: absolute;
     top: 160px;
