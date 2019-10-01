@@ -146,6 +146,7 @@
                     carrega_dia("10:00");
                     carrega_dia("10:50");
                     carrega_dia("11:00");
+                    carrega_dia("11:40");
                     carrega_dia("12:00");
                     carrega_dia("12:30");
                     carrega_dia("13:40");
