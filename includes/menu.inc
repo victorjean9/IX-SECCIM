@@ -228,11 +228,16 @@
                 <i class="laptop icon"></i> Maratona
             </div>
             <div class="content">
-                <p>
-                    <ul class="ui list">
-                        <li>Em breve...</li>
-                    </ul>
-                </p>
+                <div class="ui three stackable column grid">
+                    <div class="column coluna_inscricao_vazia"></div>
+                    <div class="column coluna_inscricao_btn">
+                        <a class="ui labeled icon button" href="https://forms.gle/iCS4oYHNqmzWG3N56" target="_blank">
+                            <i class="sign-in icon"></i>
+                            Inscreva seu time!
+                        </a>
+                    </div>
+                    <div class="column coluna_inscricao_vazia"></div>
+                </div>
             </div>
             <div class="title fonte_texto">
                 <i class="dropdown icon"></i>
