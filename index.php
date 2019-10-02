@@ -23,6 +23,15 @@
 <html>
     <head>
         <?php include "includes/header.inc"; ?>
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('service-worker.js').then(function () {
+                    console.log('service worker registered');
+                }).catch(function () {
+                    console.warn('service worker failed');
+                });
+            }
+        </script>
         <meta name="DC.title" content="SECCIM - Semana Acadêmica de Ciência da Computação - UFRRJ" />
 		<meta id="SiteKeywords" content="SECCIM, Semana Acadêmica, Computação, UFRRJ, IM, Tecnologia, Programação" name="keywords"/>
 		<meta name="DC.subject" content="SECCIM, Semana Acadêmica, Computação, UFRRJ, IM, Tecnologia, Programação" />
@@ -35,11 +44,18 @@
 		<meta property="og:image:type" content="image/jpeg">
 		<meta property="og:image:width" content="1024">
 		<meta property="og:image:height" content="720">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="IX SECCIM">
+        <link rel="apple-touch-icon" href="/img/icons/icon-152x152.png">
+        <meta name="description" content="Semana Acadêmica de Ciência da Computação - UFRRJ">
+        <meta name="theme-color" content="black">
         <script type="text/javascript">
             var peso = 2;
             var urlPalestraMinicurso = "<?php echo $palestra_minicurso; ?>";
         </script>
         <title>Home - IX SECCIM</title>
+        <link rel='manifest' href='public/manifest.json'>
         <link rel="stylesheet" type="text/css" href="css/index.css?v=8">
         <link rel="stylesheet" href="css/slider.css?v=1">
         <script src="js/index.js"></script>
