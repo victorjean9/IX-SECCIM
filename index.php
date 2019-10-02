@@ -158,8 +158,8 @@
                     </div>
                     <div class="slider__item">
                         <div class="slider_page" style="background-image : url(img/slider/maratona.jpg);"></div>
-                        <span class="slider__caption__title fonte_titulo">Maratona!</span>
-                        <span class="slider__caption__subtitle fonte_titulo">A Maratona de Programação, que ocorrerá no dia 11/10, é uma competição onde trios de programador@s se reúnem para resolver diversos desafios de programação. O grupo que conseguir resolver o maior número de problemas, vence!</span>
+                        <span class="slider__caption__title fonte_titulo ">Maratona!</span>
+                        <span class="slider__caption__subtitle fonte_titulo inscreva_button">A Maratona de Programação, que ocorrerá no dia 11/10, é uma competição onde trios de programador@s se reúnem para resolver diversos desafios de programação. O grupo que conseguir resolver o maior número de problemas, vence!</span>
                     </div>
                     <div class="slider__item">
                         <div class="slider_page" style="background-image : url(img/slider/cinecomp.jpeg);"></div>
