@@ -228,6 +228,10 @@
                 <i class="laptop icon"></i> Maratona
             </div>
             <div class="content">
+                <p class="fonte_texto">
+                    A maratona será realizada no dia 11/10, no Instituto Multidisciplinar (IM) da UFRRJ em Nova Iguaçu, com um warm up de 11:00 a 12:00, com uma pausa para o almoço antes de seu início às 14:00.<br/>
+                    As linguagens permitidas na maratona são C, C++ e Java, a prova terá 9 questões e duração de 3 horas (14:00 as 17:00) com um período de blind na última meia hora. Os participantes não poderão em hipotese alguma portar qualquer tipo de utensílio eletrônico durante a prova (exceto relógio, que não seja smart watch), porém poderão levar material escrito para consulta, tal como livros/apostila.
+                </p>
                 <div class="ui three stackable column grid">
                     <div class="column coluna_inscricao_vazia"></div>
                     <div class="column coluna_inscricao_btn">
