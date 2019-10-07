@@ -9,158 +9,45 @@
     <a id="menu_hamburguer" class="btn_menu btn_menu_grande fonte_titulo"><i class="bars icon"></i></a>
 </div>
 <div id="remove_espaço_menu"></div>
+<?php
+    // Pega todos os dias exceto *
+    $array_dias = array();
 
-<div id="cronograma_modal" class="ui large modal">
+    $sql_dias = "SELECT data FROM cronograma WHERE data != '*' ORDER BY data;";
+    $query_dias = $mysqli->query($sql_dias);
+    while ($dados_dias = $query_dias->fetch_assoc()) {
+        if (!in_array($dados_dias['data'], $array_dias)) {
+            $array_dias[] = $dados_dias['data'];
+        }
+    }
+?>
+<div id="cronograma_modal" class="ui tiny modal">
     <i class="close icon"></i>
     <div class="header">Cronograma</div>
-    <div id="cronograma_modal_content" class="scrolling content">
+    <div id="cronograma_modal_content" class="content">
         <p>Clique nos blocos para ver a duração e o local dos eventos.</p>
-        <table class="ui celled table unstackable">
-            <thead>
-                <tr>
-                    <th>Horários</th>
-                    <th>Segunda - 07/10</th>
-                    <th>Terça - 08/10</th>
-                    <th>Quarta - 09/10</th>
-                    <th>Quinta - 10/10</th>
-                    <th>Sexta - 11/10</th>
-                </tr>
-            </thead>
-            <tbody>
+        <p>Selecione um dia:
+            <select id="select_cronograma" class="ui dropdown" style="width:100px;">
                 <?php
-                    function carrega_dia($hora){
-                        include "conexao.inc";
-                        include "links.php";
-                        $sql = "SELECT id, data, hora_inicio, hora_final, id_evento, nome FROM cronograma WHERE hora_inicio='". $hora ."' ORDER BY ordem;";
-                        $query = $mysqli->query($sql);
-                        $linha_cronograma = "<tr>";
-                        $linha_cronograma .= "<td>". $hora ."</td>";
-                        $ultima_data = "06/10";
-
-                        while ($dados = $query->fetch_assoc()) {
-                            if($dados['data'] == "*"){
-                                $auxEtc = 0;
-                                while ($auxEtc < 5) {
-                                    $icone_bloco = 'coffee';
-                                    $cor_bloco = 'brown';
-                                    if ($dados['nome'] == 'Almoço') {
-                                        $icone_bloco = 'utensils';
-                                        $cor_bloco = 'red';
-                                    } else if ($dados['nome'] == 'Encerramento') {
-                                        $icone_bloco = 'power off';
-                                        $cor_bloco = 'black';
-                                    }
-
-                                    $nome = '<a class="ui '.$cor_bloco.' label bloco_cronograma" data-title="Das '.$dados['hora_inicio'].' às '.$dados['hora_final'].'"><i class="'.$icone_bloco.' icon"></i>';
-                                    $nome .= $dados['nome'];
-                                    $nome .= '</a>';
-
-                                    if (($dados['nome'] == 'Almoço') && ($auxEtc == 2)) {
-                                        $nome = "";
-                                    }
-
-                                    $linha_cronograma .= "<td>". $nome;
-                                    if($auxEtc != 4){
-                                        $linha_cronograma .= "</td>";
-                                    }
-
-                                    $auxEtc++;
-                                }
-                            } else {
-                                if($ultima_data != $dados['data']){
-                                    $agora_data = $dados['data'];
-                                    $seria_data = $ultima_data;
-                                    $dia_agora = $agora_data[0].$agora_data[1];
-                                    $dia_seria = $seria_data[0].$seria_data[1];
-
-                                    $resultado = $dia_agora - $dia_seria;
-
-                                    while($resultado > 1){
-                                        $linha_cronograma .= "<td></td>";
-
-                                        $resultado--;
-                                    }
-                                }
-
-                                $icone_bloco = 'bullhorn';
-                                $cor_bloco = 'blue';
-                                $nome_val = $dados['nome'];
-                                $url_bloco = '';
-                                $data_content = '';
-                                if ($dados['id_evento'] != 0) {
-                                    $sql2 = "SELECT titulo, tipo, url FROM minicurso_palestra WHERE id='". $dados['id_evento'] ."';";
-                                    $query2 = $mysqli->query($sql2);
-                                    $dados_minicurso_palestra = $query2->fetch_assoc();
-                                    $nome_val = $dados_minicurso_palestra['titulo'];
-
-                                    $url_bloco = ' href="'.$palestra_minicurso.$dados_minicurso_palestra['url'].'"';
-
-                                    if($dados_minicurso_palestra['tipo'] == 0){
-                                        $icone_bloco = 'graduation cap';
-                                        $cor_bloco = 'green';
-                                    }
-
-                                    $data_content = ' data-content="Local: Auditório Professor Bruno Rodrigues de Almeida, IM-UFRRJ"';
-                                    if($dados_minicurso_palestra['tipo'] == 0) {
-                                        $data_content = ' data-content="Local: 3ºAndar, sala 309 - Bloco Informática, IM-UFRRJ"';
-                                    }
-                                } else {
-                                    $icone_bloco = 'star';
-                                    $cor_bloco = 'orange';
-                                    if ($dados['nome'] == 'Almoço') {
-                                        $icone_bloco = 'utensils';
-                                        $cor_bloco = 'red';
-                                    }
-
-                                    if ($dados['id'] == 36) {
-                                        $icone_bloco = 'film';
-                                        $cor_bloco = 'purple';
-                                    }
-
-                                    if (($dados['id'] >= 24) && ($dados['id'] <= 27)){
-                                        $icone_bloco = 'laptop';
-                                        $cor_bloco = 'teal';
-                                    }
-                                }
-
-                                $nome = '<a'.$url_bloco.' class="ui '.$cor_bloco.' label bloco_cronograma" data-title="Das '.$dados['hora_inicio'].' às '.$dados['hora_final'].'"'.$data_content.'><i class="'.$icone_bloco.' icon"></i>';
-                                $nome .= $nome_val;
-                                $nome .= '</a>';
-                                if ($dados['data'] == $ultima_data) {
-                                    $linha_cronograma .= "<br/><br/>". $nome ."";
-                                } else if ($ultima_data == "") {
-                                    $linha_cronograma .= "<td>". $nome ."";
-                                } else {
-                                    $linha_cronograma .= "</td><td>". $nome ."";
-                                }
-                                $ultima_data = $dados['data'];
-                            }
+                    $hoje_dia_mes = date("d/m");
+                    foreach ($array_dias as &$dia) {
+                        $aux_html = "";
+                        if($hoje_dia_mes == $dia) {
+                            $aux_html = " selected";
                         }
-                        $linha_cronograma .= "</td></tr>";
-                        echo $linha_cronograma;
-                        $mysqli->close();
+                        echo '<option value="' . $dia . '"' . $aux_html . '>' . $dia . '</option>';
                     }
-                    carrega_dia("08:00");
-                    carrega_dia("09:30");
-                    carrega_dia("09:50");
-                    carrega_dia("10:00");
-                    carrega_dia("10:50");
-                    carrega_dia("11:00");
-                    carrega_dia("11:40");
-                    carrega_dia("12:00");
-                    carrega_dia("12:30");
-                    carrega_dia("13:40");
-                    carrega_dia("14:00");
-                    carrega_dia("14:30");
-                    carrega_dia("15:10");
-                    carrega_dia("15:20");
-                    carrega_dia("16:10");
-                    carrega_dia("16:25");
-                    carrega_dia("17:30");
-
                 ?>
-            </tbody>
-        </table>
+            </select>
+        </p>
+        <div>
+            <div id="pool_cronograma"></div>
+            <div id="placeholder_cronograma" class="ui placeholder">
+                <div class="ui active dimmer">
+                    <div class="ui text loader">Carregando</div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="actions">
         <div class="ui cancel button">Fechar</div>

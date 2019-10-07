@@ -91,9 +91,8 @@
 
                             fclose($socket);
                         }
-
                         if (($dia >= "07") && ($dia <= "11") && ($mes == "10")) {
-                            $sql_agora = "SELECT mp.id AS id_evento, titulo, tipo, foto, resumo, conteudo, cr.data AS data_evento, hora_inicio, hora_final, url FROM minicurso_palestra AS mp INNER JOIN cronograma AS cr WHERE cr.id_evento = mp.id AND cr.id_evento != 0 AND cr.data = '" . $dia . "/" . $mes ."'  GROUP BY cr.id_evento ORDER BY cr.ordem;";
+                            $sql_agora = "SELECT mp.id AS id_evento, titulo, tipo, foto, resumo, conteudo, cr.data AS data_evento, hora_inicio, hora_final, url FROM minicurso_palestra AS mp INNER JOIN cronograma AS cr WHERE cr.id_evento = mp.id AND cr.id_evento != 0 AND cr.data = '" . $dia . "/" . $mes ."' ORDER BY cr.ordem;";
                             $query_agora = $mysqli->query($sql_agora);
                             while ($dados_agora = $query_agora->fetch_assoc()) {
                                 $hora_inicio = $dados_agora['hora_inicio'];
@@ -104,7 +103,7 @@
                                 $hora_final_minutos = $hora_final[3].$hora_final[4];
 
                                 $entrou = false;
-
+                                
                                 if((intval($hora) >= intval($hora_inicio_hora)) && (intval($hora) <= intval($hora_final_hora)))  {
 
                                     if(intval($hora_inicio_hora) == intval($hora)){

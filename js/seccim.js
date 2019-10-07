@@ -14,29 +14,6 @@ $(document).on("scroll",function(){
 });
 
 $(document).ready(function(){
-    var modalNaoBasica = true;
-
-    var isChromium = window.chrome;
-    var winNav = window.navigator;
-    var vendorName = winNav.vendor;
-    var isOpera = typeof window.opr !== "undefined";
-    var isIEedge = winNav.userAgent.indexOf("Edge") > -1;
-    var isIOSChrome = winNav.userAgent.match("CriOS");
-
-    if (isIOSChrome) {
-        modalNaoBasica = true;
-    } else if(
-        isChromium !== null &&
-        typeof isChromium !== "undefined" &&
-        vendorName === "Google Inc." &&
-        isOpera === false &&
-        isIEedge === false
-    ) {
-        modalNaoBasica = true;
-    } else {
-        modalNaoBasica = false;
-    }
-
     $('.ui.accordion').accordion({
         onOpen: function(){
             $('#inscreva_modal').modal('refresh');
@@ -54,32 +31,16 @@ $(document).ready(function(){
 
     });
 
+    var abreSelectUmaVez = 0;
     $('.cronograma_button').click(function(){
-        if(window.matchMedia("(any-pointer: coarse)").matches) { //se touch
-            if(!modalNaoBasica){
-                $("#cronograma_modal").addClass("basic");
-                $("#cronograma_modal_content").removeClass("scrolling");
+        $('#cronograma_modal').modal({
+            onVisible:function(){
+                if(abreSelectUmaVez == 0){
+                    CarregaCronograma("");
+                    abreSelectUmaVez++;
+                }
             }
-
-            $('#cronograma_modal').modal({
-                onVisible:function(){
-                    $('.bloco_cronograma').popup({
-                        on: 'click',
-                        inline: true
-                    });
-                }
-            }).modal('show');
-        } else {
-            $('#cronograma_modal').modal({
-                onVisible:function(){
-                    $('.bloco_cronograma').popup({
-                         inline: true
-                    });
-                }
-            }).modal('show');
-        }
-
-
+        }).modal('show');
     });
 
     $('#menu_hamburguer').click(function(){
@@ -100,4 +61,79 @@ $(document).ready(function(){
             position: 'bottom left'
         });
     }
+
+    $("#select_cronograma").change(function(){
+        var dia_selecionado = $(this).val();
+        CarregaCronograma(dia_selecionado);
+    });
 });
+
+function CarregaCronograma(dia){
+    $("#pool_cronograma").empty();
+    $("#placeholder_cronograma").show();
+    $.ajax({
+        url: "includes/carrega_cronograma.php",
+        method: 'POST',
+        data: "&dia=" + dia,
+        dataType: "JSON",
+        success: function(res){
+            var aux = 0;
+            while (aux < res.length) {
+                var data = res[aux].data;
+                var horaInicio = res[aux].hora_inicio;
+                var horaFinal = res[aux].hora_final;
+                var cor = res[aux].cor;
+                var icone = res[aux].icone;
+                var nome = res[aux].nome;
+                var local = res[aux].local;
+                var url = res[aux].url;
+                var tipo = res[aux].tipo;
+
+                var localHtml = '';
+                if(local != ""){
+                    localHtml = 'data-content="Local: ' + local + '"';
+                }
+
+                var urlHtml = '';
+                if(url != ""){
+                    urlHtml = 'href="' + url + '"';
+                }
+
+                var detalheHtml = '';
+                if(tipo == 1){
+                    detalheHtml = '(Palestra) ';
+                } else if (tipo == 2){
+                    detalheHtml = '(Minicurso) ';
+                }
+
+                var html = `
+                    <a class="ui right pointing basic label">` + horaInicio + ` - ` + horaFinal + `</a>
+                    <a `+ urlHtml +` class="ui ` + cor + ` label bloco_cronograma" data-title="Das ` + horaInicio + ` às ` + horaFinal + `" `+localHtml+`>
+                        <i class="` + icone + ` icon"></i>
+                        ` + detalheHtml + nome + `
+                    </a><br/>
+
+                `;
+
+                $("#pool_cronograma").append(html);
+                $("#placeholder_cronograma").slideUp();
+                $('#cronograma_modal').modal('refresh');
+                aux++;
+            }
+            $('.bloco_cronograma').popup({
+                 inline: true
+            });
+
+            if(window.matchMedia("(any-pointer: coarse)").matches) { //se touch
+                $('.bloco_cronograma').popup({
+                    on: 'click',
+                    inline: true
+                });
+            } else {
+                $('.bloco_cronograma').popup({
+                     inline: true
+                });
+            }
+        }
+    });
+}
