@@ -119,16 +119,61 @@
                     A maratona será realizada no dia 11/10, no Instituto Multidisciplinar (IM) da UFRRJ em Nova Iguaçu, com um warm up de 11:00 a 12:00, com uma pausa para o almoço antes de seu início às 14:00.<br/>
                     As linguagens permitidas na maratona são C, C++ e Java, a prova terá 9 questões e duração de 3 horas (14:00 as 17:00) com um período de blind na última meia hora. Os participantes não poderão em hipotese alguma portar qualquer tipo de utensílio eletrônico durante a prova (exceto relógio, que não seja smart watch), porém poderão levar material escrito para consulta, tal como livros/apostila.
                 </p>
-                <div class="ui three stackable column grid">
-                    <div class="column coluna_inscricao_vazia"></div>
-                    <div class="column coluna_inscricao_btn">
-                        <a class="ui labeled icon button" href="https://forms.gle/iCS4oYHNqmzWG3N56" target="_blank">
-                            <i class="sign-in icon"></i>
-                            Inscreva seu time!
-                        </a>
-                    </div>
-                    <div class="column coluna_inscricao_vazia"></div>
-                </div>
+                <?php
+                    $entrou_maratona = false;
+
+                    $socket = fsockopen('udp://pool.ntp.br', 123, $err_no, $err_str, 1);
+                    $dia = date("d");
+                    $mes = date("m");
+                    $ano = date("Y");
+                    if ($socket){
+                        if (fwrite($socket, chr(bindec('00'.sprintf('%03d', decbin(3)).'011')).str_repeat(chr(0x0), 39).pack('N', time()).pack("N", 0))){
+                            stream_set_timeout($socket, 1);
+                            $unpack0 = unpack("N12", fread($socket, 48));
+                            $mes = date('m', $unpack0[7]);
+                            $dia = date('d', $unpack0[7]);
+                            $ano = date('Y', $unpack0[7]);
+                        }
+
+                        fclose($socket);
+                    }
+
+                    if($ano == 2019){
+                        if($mes >= 10){
+                            if($mes == 10 && $dia <= 11){
+                                $entrou_maratona = true;
+                            } else {
+                                $entrou_maratona = false;
+                            }
+                        } else {
+                            $entrou_maratona = true;
+                        }
+                    }
+                    if($entrou_maratona){
+                        echo '<div class="ui three stackable column grid">
+                                    <div class="column coluna_inscricao_vazia"></div>
+                                    <div class="column coluna_inscricao_btn">
+                                        <a class="ui labeled icon button" href="https://forms.gle/iCS4oYHNqmzWG3N56" target="_blank">
+                                            <i class="sign-in icon"></i>
+                                            Inscreva seu time!
+                                        </a>
+                                    </div>
+                                    <div class="column coluna_inscricao_vazia"></div>
+                            </div>';
+                    } else {
+                        echo '
+                            <div class="ui negative icon message">
+                                <i class="calendar times outline icon"></i>
+                                <div class="content">
+                                    <div class="header">
+                                        Inscrioções encerradas!
+                                    </div>
+                                    <p>O período de inscrições para a maratona acabou!</p>
+                                </div>
+                            </div>
+                        ';
+                    }
+                ?>
             </div>
             <div class="title fonte_texto">
                 <i class="dropdown icon"></i>
